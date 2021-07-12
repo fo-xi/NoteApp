@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace NoteApp
 {
-    public class Class1
-    {
-    }
+	/// <summary>
+	/// Line state.
+	/// </summary>
+	public enum StateOfView
+	{
+		Initial,
+		Updated
+	}
 }
