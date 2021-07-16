@@ -1,0 +1,47 @@
+﻿<Window x:Class="NoteAppUI.Windows.NoteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:control="clr-namespace:NoteAppUI"
+		mc:Ignorable="d"
+        Title="NoteWindow" Height="450" Width="800">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0" Margin="5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Text="Title: "
+				Width="54"/>
+
+			<TextBox
+				Grid.Column="1"
+                VerticalAlignment="Center" />
+		</Grid>
+
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+			<TextBlock
+				HorizontalAlignment="Left"
+				VerticalAlignment="Center"
+				Text="Category: "  
+				Width="54"/>
+
+			<ComboBox 
+				VerticalAlignment="Center" Width="120"/>
+		</StackPanel>
+
+		<control:Note Grid.Row="2" />
+	</Grid>
+</Window>
