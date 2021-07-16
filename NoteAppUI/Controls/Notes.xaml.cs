@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace NoteAppUI
 {
     /// <summary>
-    /// Логика взаимодействия для UserControl1.xaml
+    /// Логика взаимодействия для Notes.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class Notes : UserControl
     {
-        public UserControl1()
+        public Notes()
         {
             InitializeComponent();
         }
