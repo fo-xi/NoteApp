@@ -1,0 +1,39 @@
+﻿<Window x:Class="NoteAppUI.Windows.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoteAppUI.Windows"
+        mc:Ignorable="d"
+        Title="About" Height="400" Width="550">
+	<Window.Icon>
+		<DrawingImage />
+	</Window.Icon>
+	<Grid>
+		<TextBlock
+            Margin="10"
+            FontSize="30"
+            FontWeight="Bold"
+            Text="NoteApp" />
+		<TextBlock
+            Margin="15,55,0,0"
+            FontSize="15"
+            Text="v. 1.0.0" />
+		<TextBlock
+            Margin="15,120,0,0"
+            FontSize="15"
+            Text="Author: Dyagay Alexandra" />
+		<TextBlock Margin="15,185,0,0">
+            <Run FontSize="15" Text="e-mail for feedback:" />
+            <Hyperlink FontSize="15" NavigateUri="dyagaay@gmail.com">dyagaay@gmail.com</Hyperlink>
+		</TextBlock>
+		<TextBlock Margin="15,210,0,0">
+            <Run FontSize="15" Text="GitHub:" />
+            <Hyperlink FontSize="15" NavigateUri="https://github.com/fo-xi/NoteApp">fo-xi/NoteApp</Hyperlink>
+		</TextBlock>
+		<TextBlock
+            Margin="15,325,0,15"
+            FontSize="15"
+            Text="2021 Dyagay Alexandra" />
+	</Grid>
+</Window>
