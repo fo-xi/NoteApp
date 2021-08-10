@@ -27,7 +27,9 @@
 			<ComboBox
 				Grid.Column="1"
 				Margin="5 0 0 0"
-				VerticalAlignment="Center" />
+				VerticalAlignment="Center"
+				IsEditable ="True"/>
+
 		</Grid>
 
 		<ListBox

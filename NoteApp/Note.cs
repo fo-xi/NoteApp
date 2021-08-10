@@ -29,7 +29,7 @@ namespace NoteApp
         /// <summary>
         /// Note category.
         /// </summary>
-        private Category _noteCategory;
+        private Category? _noteCategory;
 
         /// <summary>
         /// Note text.
@@ -71,7 +71,7 @@ namespace NoteApp
         /// <summary>
         /// Returns and sets the category of the note.
         /// </summary>
-        public Category NoteCategory
+        public Category? NoteCategory
         {
             get
             {
@@ -131,7 +131,7 @@ namespace NoteApp
         /// <param name="text">Note text.</param>
         /// <param name="timeCreation">Time of note creation.</param>
         /// <param name="lastModifiedTime">When the note was last modified.</param>
-        public Note(string title, Category noteCategory, 
+        public Note(string title, Category? noteCategory, 
             string text, DateTime lastModifiedTime)
         {
             if (string.IsNullOrEmpty(title))
@@ -144,6 +144,15 @@ namespace NoteApp
             Text = text;
             TimeCreation = DateTime.Now;
             LastModifiedTime = lastModifiedTime;
+        }
+
+        /// <summary>
+        /// Creates a note.
+        /// </summary>
+        public Note() : this(string.Empty, null, string.Empty,
+            DateTime.Now)
+        {
+
         }
 
         /// <summary>

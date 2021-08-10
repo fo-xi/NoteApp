@@ -76,7 +76,7 @@ namespace NoteApp
 		/// <param name="noteCategory">Note category.</param>
 		/// <param name="notes">All notes in the app.</param>
 		/// <returns></returns>
-		public static ObservableCollection<Note> SortingNotes(Category noteCategory, 
+		public static ObservableCollection<Note> SortingNotes(Category? noteCategory, 
 			ObservableCollection<Note> notes)
 		{
 			bool result = notes.Any(note => note.NoteCategory == noteCategory);

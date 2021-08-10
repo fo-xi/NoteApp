@@ -16,6 +16,7 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<Grid Grid.Row="0" Margin="5">
@@ -48,5 +49,25 @@
 		</StackPanel>
 
 		<control:Note Grid.Row="2" />
+
+		<Grid 
+			Grid.Row="3" 
+			Margin="5 0 5 5"
+			HorizontalAlignment="Right"
+			Grid.IsSharedSizeScope="True">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition SharedSizeGroup="button" />
+				<ColumnDefinition SharedSizeGroup="button" />
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column ="0" Margin ="0 0 5 0" Content="OK"/>
+			<Button Grid.Column ="1" Margin ="5 0 0 0">
+				<ContentControl>
+					<TextBlock
+                        Width="75"
+                        Text="Cancel"
+                        TextAlignment="Center" />
+				</ContentControl>
+			</Button>
+		</Grid>
 	</Grid>
 </Window>
