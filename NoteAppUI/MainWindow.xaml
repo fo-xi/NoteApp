@@ -34,7 +34,7 @@
 				<MenuItem x:Name="RemoveNoteMenuItem" Header="Remove Note" />
 			</MenuItem>
 			<MenuItem Header="Help">
-				<MenuItem x:Name="ShowAboutWindowMenuItem" Header="About" />
+                <MenuItem x:Name="ShowAboutWindowMenuItem" Header="About"/>
 			</MenuItem>
 		</Menu>
 

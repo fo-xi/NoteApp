@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Command;
+using NoteAppUI.Service;
+using NoteAppUI.Windows;
+using ViewModel;
 
 namespace NoteAppUI
 {
@@ -20,9 +24,35 @@ namespace NoteAppUI
     /// </summary>
     public partial class MainWindow : Window
     {
+	    MainWindowVM _mainWindow = new MainWindowVM(new MessageBoxService(), new NoteWindowService());
+
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = _mainWindow;
+
+            ShowAboutWindowMenuItem.Command = new RelayCommand(OpenAbout);
+            Exit.Command = new RelayCommand(ExitMainWindow);
+
+            Closing += ClosingMainWindow;
+        }
+
+        private void OpenAbout()
+        {
+	        AboutWindow aboutWindow = new AboutWindow();
+	        aboutWindow.ShowDialog();
+        }
+
+        private void ExitMainWindow()
+        {
+	        _mainWindow.Save();
+	        Close();
+        }
+
+        private void ClosingMainWindow(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+	        _mainWindow.Save();
         }
     }
 }

@@ -51,14 +51,14 @@ namespace ViewModel
         {
             var listNotesVM = (NotesVM)sender;
 
-            if (listNotesVM.FindCategory == _oldFindText)
+            if (listNotesVM.SelectedCategory == _oldFindText)
             {
                 return;
             }
 
-            _oldFindText = listNotesVM.FindCategory;
+            _oldFindText = listNotesVM.SelectedCategory;
             listNotesVM.FindedNotes = Project.SortingNotes
-                (listNotesVM.FindCategory, NotesVM.Notes);
+                (listNotesVM.SelectedCategory, NotesVM.Notes);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ViewModel.ControlsVM
 
 		private Note _selectedNote;
 
-		private Category? _findCategory;
+		private Category? _selectedCategory;
 
 		private ObservableCollection<Note> _findedNotes;
 
@@ -45,17 +45,17 @@ namespace ViewModel.ControlsVM
 			}
 		}
 
-		public Category? FindCategory
+		public Category? SelectedCategory
 		{
 			get
 			{
-				return _findCategory;
+				return _selectedCategory;
 			}
 			set
 			{
 
-				_findCategory = value;
-				RaisePropertyChanged(nameof(FindCategory));
+				_selectedCategory = value;
+				RaisePropertyChanged(nameof(SelectedCategory));
 			}
 		}
 
@@ -67,7 +67,7 @@ namespace ViewModel.ControlsVM
 			}
 			set
 			{
-				_findedNotes = Project.SortingNotes(FindCategory, value);
+				_findedNotes = Project.SortingNotes(SelectedCategory, value);
 				RaisePropertyChanged(nameof(FindedNotes));
 			}
 		}
@@ -121,7 +121,7 @@ namespace ViewModel.ControlsVM
 		public NotesVM(IMessageBoxService messageBoxService,
 			INoteWindowService noteWindowService, ObservableCollection<Note> notes)
 		{
-			FindCategory = null;
+			SelectedCategory = null;
 			Notes = notes;
 
 			_messageBoxService = messageBoxService;

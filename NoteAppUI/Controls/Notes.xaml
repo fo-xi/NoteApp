@@ -4,10 +4,23 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:NoteAppUI"
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+			 xmlns:noteApp="clr-namespace:NoteApp;assembly=NoteApp"
+			 xmlns:controlsVm="clr-namespace:ViewModel.ControlsVM;assembly=ViewModel"
 			 mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance controlsVm:NotesVM}"
 			 d:DesignHeight="450" d:DesignWidth="800">
-	
-	<Grid>
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="Category" MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="noteApp:Category"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
+    <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
@@ -28,7 +41,9 @@
 				Grid.Column="1"
 				Margin="5 0 0 0"
 				VerticalAlignment="Center"
-				IsEditable ="True"/>
+				IsEditable ="True"
+                ItemsSource="{Binding Source={StaticResource Category}}"
+                SelectedValue="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 		</Grid>
 
@@ -36,9 +51,20 @@
 			Name="NoteList"
 			Grid.Row="1"
 			Margin="5"
-			ScrollViewer.VerticalScrollBarVisibility="Visible" />
+			ScrollViewer.VerticalScrollBarVisibility="Visible" 
+            ItemsSource ="{Binding FindedNotes}"
+            SelectedItem ="{Binding SelectedNote}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Title}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
-		<Grid Grid.Row="2" Margin="5">
+
+        <Grid Grid.Row="2" Margin="5">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
@@ -46,20 +72,23 @@
 			</Grid.ColumnDefinitions>
 			<Button
 				Grid.Column="0" 
-				Style ="{StaticResource ButtonStyle}">
+				Style ="{StaticResource ButtonStyle}"
+                Command="{Binding AddCommand}">
 				<Image Source="/Resources/add.png" />
+            </Button>
+
+            <Button
+				Grid.Column="1" 
+				Style ="{StaticResource ButtonStyle}"
+                Command="{Binding EditCommand}">
+                <Image Source="/Resources/edit.png" />
 			</Button>
 
-			<Button
-				Grid.Column="1" 
-				Style ="{StaticResource ButtonStyle}">
-				<Image Source="/Resources/edit.png" />
-			</Button>
-			
-			<Button
+            <Button
 				Grid.Column="2" 
-				Style ="{StaticResource ButtonStyle}">
-				<Image Source="/Resources/remove.png" />
+				Style ="{StaticResource ButtonStyle}"
+                Command="{Binding RemoveCommand}">
+                <Image Source="/Resources/remove.png" />
 			</Button>
 		</Grid>
 		

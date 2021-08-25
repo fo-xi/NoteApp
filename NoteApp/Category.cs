@@ -11,7 +11,8 @@ namespace NoteApp
     /// </summary>
     public enum Category
     {
-        Work,
+        All,
+	    Work,
         Home,
         HealthAndSports,
         People,

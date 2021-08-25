@@ -17,9 +17,9 @@ namespace NoteAppUI.Windows
     /// <summary>
     /// Логика взаимодействия для About.xaml
     /// </summary>
-    public partial class About : Window
+    public partial class AboutWindow : Window
     {
-        public About()
+        public AboutWindow()
         {
             InitializeComponent();
         }
