@@ -61,7 +61,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IMessageBoxService.cs" />
     <Compile Include="Service\INoteWindowService.cs" />
-    <Compile Include="WindowsVM\NoteVM.cs" />
+    <Compile Include="WindowsVM\NoteWindowVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

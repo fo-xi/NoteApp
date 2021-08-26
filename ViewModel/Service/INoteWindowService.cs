@@ -13,7 +13,7 @@ namespace ViewModel.Service
     {
         bool DialogResult { get; set; }
 
-        void Open(NoteVM note);
+        void Open(NoteWindowVM note);
 
         RelayCommand OKCommand { get; set; }
 

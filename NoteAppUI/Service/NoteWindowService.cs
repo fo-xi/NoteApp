@@ -16,7 +16,7 @@ namespace NoteAppUI.Service
 
 		public bool DialogResult { get; set; }
 
-		public void Open(NoteVM note)
+		public void Open(NoteWindowVM note)
 		{
 			_noteWindowWindow = new NoteWindow();
 			_noteWindowWindow.DataContext = note;

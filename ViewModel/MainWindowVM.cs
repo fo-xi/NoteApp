@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using ViewModel.ControlsVM;
 using ViewModel.Service;
 
@@ -16,7 +17,15 @@ namespace ViewModel
 
         private NotesVM _notesVM;
 
+        private Note _selectedNote;
+
         private Category? _oldFindText = null;
+
+        public RelayCommand AddCommand { get; set; }
+
+        public RelayCommand EditCommand { get; set; }
+
+        public RelayCommand RemoveCommand { get; set; }
 
         public NotesVM NotesVM
         {
@@ -31,6 +40,19 @@ namespace ViewModel
             }
         }
 
+        public Note SelectedNote
+        {
+	        get
+	        {
+		        return _selectedNote;
+	        }
+	        set
+	        {
+		        _selectedNote = value;
+		        RaisePropertyChanged(nameof(SelectedNote));
+	        }
+        }
+
         public MainWindowVM(IMessageBoxService messageBoxService,
             INoteWindowService noteWindowService)
         {
@@ -39,6 +61,10 @@ namespace ViewModel
                 noteWindowService, Project.SortingNotes(_project.Notes));
 
             NotesVM.PropertyChanged += OnTextChanged;
+
+            AddCommand = NotesVM.AddCommand;
+            EditCommand = NotesVM.EditCommand;
+            RemoveCommand = NotesVM.AddCommand;
         }
 
         public void Save()

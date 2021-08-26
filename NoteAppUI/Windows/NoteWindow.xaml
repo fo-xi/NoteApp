@@ -4,12 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:control="clr-namespace:NoteAppUI"
-		mc:Ignorable="d"
-        Title="NoteWindow" Height="450" Width="800">
+		xmlns:noteApp="clr-namespace:NoteApp;assembly=NoteApp" xmlns:controlsvm="clr-namespace:ViewModel.ControlsVM;assembly=ViewModel"
+        xmlns:windowsVm="clr-namespace:ViewModel.WindowsVM;assembly=ViewModel"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="NoteWindow" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance windowsVm:NoteWindowVM}">
 
 	<Window.Icon>
 		<DrawingImage />
 	</Window.Icon>
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="Category" MethodName="GetValues"
+                            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="noteApp:Category"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
 
 	<Grid>
 		<Grid.RowDefinitions>
@@ -34,7 +47,8 @@
 
 			<TextBox
 				Grid.Column="1"
-                VerticalAlignment="Center" />
+                VerticalAlignment="Center" 
+                Text="{Binding Note.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		</Grid>
 
 		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
@@ -43,12 +57,15 @@
 				VerticalAlignment="Center"
 				Text="Category: "  
 				Width="54"/>
-
-			<ComboBox 
-				VerticalAlignment="Center" Width="120"/>
+            <ComboBox 
+				VerticalAlignment="Center" Width="120"
+                ItemsSource="{Binding Source={StaticResource Category}}"
+                SelectedValue="{Binding Note.NoteCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		</StackPanel>
 
-		<control:Note Grid.Row="2" />
+		<control:Note 
+            Grid.Row="2"
+            DataContext="{Binding Note}"/>
 
 		<Grid 
 			Grid.Row="3" 
@@ -59,8 +76,15 @@
 				<ColumnDefinition SharedSizeGroup="button" />
 				<ColumnDefinition SharedSizeGroup="button" />
 			</Grid.ColumnDefinitions>
-			<Button Grid.Column ="0" Margin ="0 0 5 0" Content="OK"/>
-			<Button Grid.Column ="1" Margin ="5 0 0 0">
+
+			<Button Grid.Column ="0" 
+                    Margin ="0 0 5 0"
+                    Content="OK"
+                    Command="{Binding OKCommand}"/>
+
+            <Button Grid.Column ="1" 
+                    Margin ="5 0 0 0"
+                    Command ="{Binding CancelCommand}">
 				<ContentControl>
 					<TextBlock
                         Width="75"

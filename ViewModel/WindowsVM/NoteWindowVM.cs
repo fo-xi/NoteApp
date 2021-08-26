@@ -10,7 +10,7 @@ using ViewModel.Service;
 
 namespace ViewModel.WindowsVM
 {
-    public class NoteVM
+    public class NoteWindowVM
     {
         private Note _note;
 
@@ -30,7 +30,7 @@ namespace ViewModel.WindowsVM
 
         public RelayCommand CancelCommand { get; set; }
 
-        public NoteVM(Note note, INoteWindowService noteWindowService)
+        public NoteWindowVM(Note note, INoteWindowService noteWindowService)
         {
             Note = note;
             OKCommand = noteWindowService.OKCommand;

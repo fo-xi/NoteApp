@@ -52,7 +52,7 @@
 			Grid.Row="1"
 			Margin="5"
 			ScrollViewer.VerticalScrollBarVisibility="Visible" 
-            ItemsSource ="{Binding FindedNotes}"
+            ItemsSource ="{Binding FindedNotes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             SelectedItem ="{Binding SelectedNote}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

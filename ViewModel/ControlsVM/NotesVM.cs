@@ -67,14 +67,14 @@ namespace ViewModel.ControlsVM
 			}
 			set
 			{
-				_findedNotes = Project.SortingNotes(SelectedCategory, value);
+				_findedNotes = value;
 				RaisePropertyChanged(nameof(FindedNotes));
 			}
 		}
 
 		private void Add()
 		{
-			NoteVM window = new NoteVM(new Note(), _noteWindowService);
+			NoteWindowVM window = new NoteWindowVM(new Note(), _noteWindowService);
 
 			_noteWindowService.Open(window);
 
@@ -107,7 +107,7 @@ namespace ViewModel.ControlsVM
 				return;
 			}
 
-			NoteVM window = new NoteVM((Note)selectedNote.Clone(), _noteWindowService);
+			NoteWindowVM window = new NoteWindowVM((Note)selectedNote.Clone(), _noteWindowService);
 
 			_noteWindowService.Open(window);
 
@@ -123,6 +123,7 @@ namespace ViewModel.ControlsVM
 		{
 			SelectedCategory = null;
 			Notes = notes;
+			FindedNotes = Notes;
 
 			_messageBoxService = messageBoxService;
 			_noteWindowService = noteWindowService;

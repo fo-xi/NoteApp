@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NoteAppUI"
+             xmlns:noteApp="clr-namespace:NoteApp;assembly=NoteApp"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" 
+             d:DataContext="{d:DesignInstance noteApp:Note}">
     <Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -22,7 +24,9 @@
 			<DatePicker
 				HorizontalAlignment="Left"
 				VerticalAlignment="Center"
-				IsEnabled="False"/>
+				IsEnabled="False"
+                SelectedDate="{Binding TimeCreation, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedDateFormat="Short"/>
 
 			<TextBlock
 				HorizontalAlignment="Left"
@@ -34,11 +38,15 @@
 			<DatePicker
 				HorizontalAlignment="Left"
 				VerticalAlignment="Center"
-				IsEnabled="False"/>
+				IsEnabled="False"
+                SelectedDate="{Binding LastModifiedTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedDateFormat="Short"/>
 		</StackPanel>
 
 		<TextBox
 			Grid.Row="1" Margin="5"
-			ScrollViewer.VerticalScrollBarVisibility="Visible" />
+			ScrollViewer.VerticalScrollBarVisibility="Visible"
+			Text ="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
 	</Grid>
 </UserControl>
