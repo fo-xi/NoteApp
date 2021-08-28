@@ -83,8 +83,15 @@ namespace NoteApp
 
 			if (result)
 			{
-				return new ObservableCollection<Note>(notes.Where(note => note.NoteCategory == noteCategory)
-					.OrderBy(note => note.LastModifiedTime));
+				if (noteCategory == Category.All)
+				{
+					return notes;
+				}
+				else
+				{
+					return new ObservableCollection<Note>(notes.Where(note => note.NoteCategory == noteCategory)
+						.OrderBy(note => note.LastModifiedTime));
+				}
 			}
 			else
 			{

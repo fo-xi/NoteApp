@@ -67,7 +67,7 @@ namespace ViewModel.ControlsVM
 			}
 			set
 			{
-				_findedNotes = value;
+				_findedNotes = Project.SortingNotes(SelectedCategory, value);
 				RaisePropertyChanged(nameof(FindedNotes));
 			}
 		}
@@ -95,6 +95,7 @@ namespace ViewModel.ControlsVM
 			}
 
 			Notes.Remove(selectedNote);
+			FindedNotes = Notes;
 		}
 
 		private void Edit()
@@ -116,14 +117,15 @@ namespace ViewModel.ControlsVM
 				var index = Notes.IndexOf(selectedNote);
 				Notes[index] = window.Note;
 			}
+
+			FindedNotes = Notes; 
 		}
 
 		public NotesVM(IMessageBoxService messageBoxService,
 			INoteWindowService noteWindowService, ObservableCollection<Note> notes)
 		{
 			SelectedCategory = null;
-			Notes = notes;
-			FindedNotes = Notes;
+			Notes = FindedNotes = notes;
 
 			_messageBoxService = messageBoxService;
 			_noteWindowService = noteWindowService;
