@@ -46,6 +46,14 @@ namespace NoteApp
         /// </summary>
         private StateOfView _titleState = StateOfView.Initial;
 
+	    public override bool HasErrors
+        {
+	        get
+	        {
+		        return base.HasErrors || string.IsNullOrEmpty(Title);
+		    }
+        }
+
         /// <summary>
         /// Returns and sets the title of the note.
         /// </summary>
@@ -59,12 +67,23 @@ namespace NoteApp
             {
                 if (_titleState == StateOfView.Updated)
                 {
-                    Validate(value, MinLength, MaxLength, nameof(Title));
+                    base.Validate(value, MinLength, MaxLength, nameof(Title));
                 }
 
-                _title = value;
+                if (string.IsNullOrEmpty(value))
+                {
+	                _title = "Без названия";
+                }
+                else
+                {
+	                _title = value;
+                }
+
                 LastModifiedTime = DateTime.Now;
                 RaisePropertyChanged(nameof(Title));
+                RaisePropertyChanged(nameof(HasErrors));
+
+                _titleState = StateOfView.Updated;
             }
         }
 
@@ -134,12 +153,7 @@ namespace NoteApp
         public Note(string title, Category? noteCategory, 
             string text, DateTime lastModifiedTime)
         {
-            if (string.IsNullOrEmpty(title))
-            {
-                Title = "Без названия";
-            }
-
-            Title = title;
+	        Title = title;
             NoteCategory = noteCategory;
             Text = text;
             TimeCreation = DateTime.Now;

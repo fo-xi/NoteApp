@@ -79,19 +79,17 @@ namespace NoteApp
 		public static ObservableCollection<Note> SortingNotes(Category? noteCategory, 
 			ObservableCollection<Note> notes)
 		{
+			if (noteCategory == Category.All)
+			{
+				return SortingNotes(notes);
+			}
+
 			bool result = notes.Any(note => note.NoteCategory == noteCategory);
 
 			if (result)
 			{
-				if (noteCategory == Category.All)
-				{
-					return notes;
-				}
-				else
-				{
-					return new ObservableCollection<Note>(notes.Where(note => note.NoteCategory == noteCategory)
+				return new ObservableCollection<Note>(notes.Where(note => note.NoteCategory == noteCategory)
 						.OrderBy(note => note.LastModifiedTime));
-				}
 			}
 			else
 			{
