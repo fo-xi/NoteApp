@@ -135,7 +135,7 @@ namespace NoteApp
             {
                 return _lastModifiedTime;
             }
-            private set
+            set
             {
                 _lastModifiedTime = value;
                 RaisePropertyChanged(nameof(LastModifiedTime));
