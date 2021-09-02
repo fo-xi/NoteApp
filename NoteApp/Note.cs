@@ -11,12 +11,7 @@ namespace NoteApp
 {
 	public class Note : NotifyDataErrorInfoBase, ICloneable
     {
-        /// <summary>
-        /// Minimum string length.
-        /// </summary>
-        private const int MinLength = 1;
-
-        /// <summary>
+	    /// <summary>
         /// Maximum line length.
         /// </summary>
         private const int MaxLength = 50;
@@ -67,7 +62,7 @@ namespace NoteApp
             {
                 if (_titleState == StateOfView.Updated)
                 {
-                    base.Validate(value, MinLength, MaxLength, nameof(Title));
+                    base.Validate(value, MaxLength, nameof(Title));
                 }
 
                 if (string.IsNullOrEmpty(value))

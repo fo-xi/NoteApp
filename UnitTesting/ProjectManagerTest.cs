@@ -58,18 +58,19 @@ namespace UnitTesting
         [Test(Description = "A positive test reading from a file")]
         public void TestReadFromFile_CorrectData()
         {
-            ProjectManager.Path = path;
-            if (File.Exists(ProjectManager.Path))
-            {
-                File.Delete(ProjectManager.Path);
-            }
-            File.Create(ProjectManager.Path).Close();
-            var expectedString = File.ReadAllText(referencePath);
-            var expectedProject = JsonConvert.DeserializeObject<Project>(expectedString);
-            File.WriteAllText(ProjectManager.Path, expectedString);
-            var actualProject = ProjectManager.ReadFromFile();
-            Assert.AreEqual(expectedProject.Notes[0].Title,
-                actualProject.Notes[0].Title, "Different file contents");
+	        ProjectManager.Path = path;
+	        if (File.Exists(ProjectManager.Path))
+	        {
+		        File.Delete(ProjectManager.Path);
+	        }
+
+	        File.Create(ProjectManager.Path).Close();
+	        var expectedString = File.ReadAllText(referencePath);
+	        var expectedProject = JsonConvert.DeserializeObject<Project>(expectedString);
+	        File.WriteAllText(ProjectManager.Path, expectedString);
+	        var actualProject = ProjectManager.ReadFromFile();
+	        Assert.AreEqual(expectedProject.Notes[0].Title,
+		        actualProject.Notes[0].Title, "Different file contents");
         }
 
         [Test(Description = "A negative test reading from a file")]

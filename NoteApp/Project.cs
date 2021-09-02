@@ -39,22 +39,6 @@ namespace NoteApp
 			}
 		}
 
-		/// <summary>
-		/// Returns and sets the current note.
-		/// </summary>
-		public Note CurrentNote
-		{
-			get
-			{
-				return _currentNote;
-			}
-			set
-			{
-				_currentNote = value;
-				RaisePropertyChanged(nameof(CurrentNote));
-			}
-		}
-
 		public Project()
 		{
 			Notes = new ObservableCollection<Note>();

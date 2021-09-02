@@ -36,6 +36,15 @@ namespace UnitTesting
 			}, "The Title setter accepts the correct title");
 		}
 
+		[Test(Description = "Default name testing")]
+		public void TestTitleSet_DefaultName()
+		{
+			var expected = "Без названия";
+			var note = new Note("", null, " ", new DateTime(2000, 11, 21));
+			var actual = note.Title;
+			Assert.AreEqual(expected, actual, "The setter is setting the wrong value");
+		}
+
 		[TestCase("HomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHomeHome", 
 			"An exception may occur if the title contains more than 50 symbol",
 		TestName = "Assigning an incorrect title that contains more than 50 symbol")]

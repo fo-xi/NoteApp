@@ -89,11 +89,11 @@ namespace NoteApp
         /// </summary>
         /// <param name="value">Value.</param>
         /// <param name="propertyName">Property Name.</param>
-        public void Validate(string value, int minLength,
+        public void Validate(string value,
             int maxLength, string propertyName)
         {
             ClearErrors(propertyName);
-            if (!Validator.IsStringLength(value, minLength,
+            if (!Validator.IsStringLength(value,
                 maxLength, out var valueString))
             {
                 AddError(propertyName, valueString);

@@ -15,19 +15,16 @@ namespace NoteApp
         /// Checking the length of a string.
         /// </summary>
         /// <param name="value">String.</param>
-        /// <param name="initialLength">Initial length.</param>
         /// <param name="finalLength">Final length.</param>
         /// <param name="message">Error message.</param>
         /// <returns></returns>
-        public static bool IsStringLength(string value,
-            int initialLength, int finalLength, out string message)
+        public static bool IsStringLength(string value, int finalLength, out string message)
         {
             message = String.Empty;
 
-            if ((value.Length < initialLength) || (value.Length > finalLength))
+            if (value.Length > finalLength)
             {
-                message = "Value must be in the range from " +
-                          initialLength + " to " + finalLength;
+                message = "The value must be less than 50 characters";
                 return false;
             }
             return true;
