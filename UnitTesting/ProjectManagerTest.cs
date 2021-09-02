@@ -27,6 +27,8 @@ namespace UnitTesting
 
         public static readonly string nonЕxistentPath = "..\\nkbrnb\\fbk.txt";
 
+        public static readonly string projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName 
+                                                    + "\\ReferencePath\\Data.txt";
 
         [Test(Description = "A test writing to a file")]
         public void TestWriteToFile_WithCreatedFile()
@@ -58,14 +60,7 @@ namespace UnitTesting
         [Test(Description = "A positive test reading from a file")]
         public void TestReadFromFile_CorrectData()
         {
-	        ProjectManager.Path = path;
-	        if (File.Exists(ProjectManager.Path))
-	        {
-		        File.Delete(ProjectManager.Path);
-	        }
-
-	        File.Create(ProjectManager.Path).Close();
-	        var expectedString = File.ReadAllText(referencePath);
+	        var expectedString = File.ReadAllText(projectPath);
 	        var expectedProject = JsonConvert.DeserializeObject<Project>(expectedString);
 	        File.WriteAllText(ProjectManager.Path, expectedString);
 	        var actualProject = ProjectManager.ReadFromFile();
